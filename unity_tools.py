@@ -27,13 +27,13 @@ def do_tasks(tasks):
 
 
 def set_version_code(versionCode):
-    with open(join(config["projectPath"], "VersionCode.txt"), 'w') as f:
+    with open(join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt"), 'w') as f:
         f.write(versionCode)
     pass
 
 
 def set_build_number(buildNumber):
-    with open(join(config["projectPath"], "BuildNumber.txt"), 'w') as f: 
+    with open(join(config["projectPath"], "TempQuickBuild", "BuildNumber.txt"), 'w') as f: 
         f.write(str(buildNumber))
     pass
 
@@ -66,10 +66,10 @@ def commitAssetBundles():
 
 
 if __name__ == "__main__":
-    init("test.json")
+    # init("test.json")
     # set_version_code("2.0.0.0")
     # set_build_number(26)
     # print(svn_update())
     # print(commitAssetBundles())
-    print(execute_unity("Editor.EditorTest.TestBatchMode"))
+    # print(execute_unity("Editor.EditorTest.TestBatchMode"))
     pass
