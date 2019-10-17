@@ -13,9 +13,9 @@ tasks.append(unity_tools.svn_update)
 
 tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.Apply", "Firebase.asset"))
 
-tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetItemMaker.UpdateAll"))
-tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.OnekeyGenFinal"))
-tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.UpdateLocal"))
+# tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetItemMaker.UpdateAll"))
+# tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.OnekeyGenFinal"))
+# tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.UpdateLocal"))
 # tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.FullyUpdateLocal"))
 tasks.append(unity_tools.commitAssetBundles)
 
