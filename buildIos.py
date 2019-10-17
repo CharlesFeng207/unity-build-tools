@@ -18,7 +18,7 @@ tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.Apply", "Fi
 # tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.OnekeyGenFinal"))
 # tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.UpdateLocal"))
 # tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.FullyUpdateLocal"))
-# tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.Build", "Firebase.asset"))
+tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.Build", "Firebase.asset"))
 tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.ExportLastBuildIpa"))
 tasks.append(lambda : unity_tools.execute_unity("Editor.OnekeyBuild.UploadLastBuild"))
 
