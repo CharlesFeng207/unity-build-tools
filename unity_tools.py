@@ -31,7 +31,7 @@ def do_tasks(tasks):
 def get_svn_version():
     info = subprocess.check_output(["svnversion", config["projectPath"]])
 
-    result = info.decode('utf-8').split(':')[-1]
+    result = info.decode('utf-8').split(':')[-1].rstrip()
     print("get_svn_info: " + result)
 
     return result
