@@ -59,7 +59,7 @@ def make_ipa_qrcode():
 
     commit_qrcode_project(build_name)
     execute_upload(qrcodeFilePath)
-    
+
     pass
 
 
@@ -127,7 +127,7 @@ def execute_upload_lastbuild():
 
 
 def execute_upload(filePath):
-    return execute_unity("Editor.OnekeyBuild.Upload", filePath)
+    return execute_unity("Editor.OnekeyBuild.UploadForBatchMode", filePath)
 
 
 def execute_apply_build_config(configName):
