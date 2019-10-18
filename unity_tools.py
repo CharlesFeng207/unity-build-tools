@@ -5,6 +5,8 @@ import sys
 import json
 import subprocess
 from os.path import join
+import qrcode
+from PIL import Image
 
 
 config = {}
@@ -25,6 +27,52 @@ def do_tasks(tasks):
                 a = input(f"task {i} execute failed, press 'y' to retry!")
 
     input("tasks done!")
+    pass
+
+
+def make_ipa_qrcode():
+
+    qrcodePath = config["qrcodePath"]
+    build_name = get_current_build_name()
+
+    with open(join(qrcodePath, "temp.html"), 'r', encoding='UTF-8') as f:
+        htmlTemp = f.read()
+
+    with open(join(qrcodePath, "temp.plist"), 'r', encoding='UTF-8') as f:
+        plistTemp = f.read()
+
+    with open(join(qrcodePath, f"{build_name}.html"), 'w') as f:
+        f.write(htmlTemp.format(build_name))
+
+    with open(join(qrcodePath, f"{build_name}.plist"), 'w') as f:
+        f.write(plistTemp.format(config["uploadUrl"], build_name))
+
+    qrcodeFilePath = join(qrcodePath, f"{build_name}.png")
+    qrcodeUrl = "{0}/{1}".format(config["qrcodeUrl"], f"{build_name}.html")
+
+    # print(qrcodeFile)
+    # print(qrcodeUrl)
+
+    img = qrcode.make(qrcodeUrl)
+    with open(qrcodeFilePath, 'wb') as f:
+        img.save(f)
+
+    commit_qrcode_project(build_name)
+    execute_upload(qrcodeFilePath)
+    
+    pass
+
+
+def commit_qrcode_project(message):
+    os.chdir(config["qrcodePath"])
+    os.system("git add -A")
+    os.system("git commit -m {0}".format(message))
+    os.system("git push")
+
+
+def get_current_build_name():
+    with open(join(config["projectPath"], "TempQuickBuild",  "CurrentBuildName.txt"), 'r') as f:
+        return f.read()
     pass
 
 
@@ -78,6 +126,10 @@ def execute_upload_lastbuild():
     return execute_unity("Editor.OnekeyBuild.UploadLastBuild")
 
 
+def execute_upload(filePath):
+    return execute_unity("Editor.OnekeyBuild.Upload", filePath)
+
+
 def execute_apply_build_config(configName):
     return execute_unity("GPCommon.QuickBuild.Apply", configName)
 
@@ -124,6 +176,8 @@ def commitAssetBundles():
 if __name__ == "__main__":
     init("test.json")
     get_svn_version()
+    print(get_current_build_name())
+    make_ipa_qrcode()
 
     # set_version_code("2.0.0.0")
     # set_build_number(26)

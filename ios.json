@@ -3,5 +3,8 @@
     "projectPath":"/Users/charles/Documents/g03_client",
     "assetBundlesPath":"",
     "svn_username":"iosbuilder",
-    "svn_password":"123456"
+    "svn_password":"123456",
+    "qrcodePath":"/Users/charles/Documents/CharlesFeng207.github.io",
+    "uploadUrl":"http://192.168.0.230:2015/g03",
+    "qrcodeUrl":"https://charlesfeng207.github.io"
 }

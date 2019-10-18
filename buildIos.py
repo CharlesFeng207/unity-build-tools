@@ -24,5 +24,6 @@ tasks.append(lambda : unity_tools.execute_quick_build("Firebase.asset"))
 
 tasks.append(unity_tools.execute_export_lastbuild_ipa)
 tasks.append(unity_tools.execute_upload_lastbuild)
+tasks.append(unity_tools.make_ipa_qrcode)
 
 unity_tools.do_tasks(tasks)
