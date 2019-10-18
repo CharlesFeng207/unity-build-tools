@@ -31,7 +31,7 @@ def do_tasks(tasks):
 def get_svn_version():
     info = subprocess.check_output(["svnversion", config["projectPath"]])
 
-    result = info.decode('utf-8').split(':')[-1]
+    result = info.decode('utf-8').split(':')[-1].rstrip()
     print("get_svn_info: " + result)
 
     return result
@@ -122,7 +122,7 @@ def commitAssetBundles():
 
 
 if __name__ == "__main__":
-    init("test.json")
+    init("android.json")
     get_svn_version()
 
     # set_version_code("2.0.0.0")
