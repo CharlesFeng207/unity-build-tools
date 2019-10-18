@@ -3,10 +3,12 @@
 import os
 import sys
 import json
+import subprocess
 from os.path import join
 
 
 config = {}
+
 
 def init(configName):
     with open(os.path.join(sys.path[0], configName), 'r') as f:
@@ -26,6 +28,16 @@ def do_tasks(tasks):
     pass
 
 
+def get_svn_info():
+    info = subprocess.check_output(
+        "svnversion {0}".format(config["projectPath"]))
+
+    result = info.decode('utf-8').split(':')[-1]
+    print("get_svn_info: " + result)
+
+    return result
+
+
 def set_version_code(versionCode):
     with open(join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt"), 'w') as f:
         f.write(versionCode)
@@ -33,7 +45,7 @@ def set_version_code(versionCode):
 
 
 def set_build_number(buildNumber):
-    with open(join(config["projectPath"], "TempQuickBuild", "BuildNumber.txt"), 'w') as f: 
+    with open(join(config["projectPath"], "TempQuickBuild", "BuildNumber.txt"), 'w') as f:
         f.write(str(buildNumber))
     pass
 
@@ -43,7 +55,12 @@ def print_and_run(cmd):
     return os.system(cmd)
 
 
-def execute_unity(executeMethod, args = ""):
+def execute_quick_build(configName):
+    svn_version = get_svn_info()
+    return execute_unity("GPCommon.QuickBuild.Build", f"{configName} {svn_version}")
+
+
+def execute_unity(executeMethod, args=""):
     cmd = r"{0} -batchmode -nographics -projectPath {1} -executeMethod {2} {3} -quit -logFile run_unity.log".format(
         config["unityPath"], config["projectPath"], executeMethod, args)
     return print_and_run(cmd)
@@ -66,7 +83,9 @@ def commitAssetBundles():
 
 
 if __name__ == "__main__":
-    # init("test.json")
+    init("test.json")
+    get_svn_info()
+
     # set_version_code("2.0.0.0")
     # set_build_number(26)
     # print(svn_update())
