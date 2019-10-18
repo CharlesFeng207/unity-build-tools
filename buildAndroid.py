@@ -27,6 +27,8 @@ tasks.append(lambda : unity_tools.execute_quick_build("Firebase.asset"))
 
 tasks.append(unity_tools.execute_upload_lastbuild)
 
+tasks.append(unity_tools.execute_archieve_assetbundle)
+
 tasks.append(unity_tools.execute_upload_pending_version)
 tasks.append(unity_tools.execute_upload_version)
 
