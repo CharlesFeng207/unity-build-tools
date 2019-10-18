@@ -28,9 +28,8 @@ def do_tasks(tasks):
     pass
 
 
-def get_svn_info():
-    info = subprocess.check_output(
-        "svnversion {0}".format(config["projectPath"]))
+def get_svn_version():
+    info = subprocess.check_output(["svnversion", config["projectPath"]])
 
     result = info.decode('utf-8').split(':')[-1]
     print("get_svn_info: " + result)
@@ -56,7 +55,7 @@ def print_and_run(cmd):
 
 
 def execute_quick_build(configName):
-    svn_version = get_svn_info()
+    svn_version = get_svn_version()
     return execute_unity("GPCommon.QuickBuild.Build", f"{configName} {svn_version}")
 
 
@@ -84,7 +83,7 @@ def commitAssetBundles():
 
 if __name__ == "__main__":
     init("test.json")
-    get_svn_info()
+    get_svn_version()
 
     # set_version_code("2.0.0.0")
     # set_build_number(26)
