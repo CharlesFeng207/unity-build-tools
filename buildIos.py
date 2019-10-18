@@ -11,15 +11,18 @@ tasks = []
 
 tasks.append(unity_tools.svn_update)
 
-tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.Apply", "Firebase.asset"))
+tasks.append(lambda : unity_tools.execute_apply_build_config("Firebase.asset"))
 
 # tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.DeleteCode"))
-# tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetItemMaker.UpdateAll"))
-# tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.OnekeyGenFinal"))
-# tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.UpdateLocal"))
-# tasks.append(lambda : unity_tools.execute_unity("GPCommon.AssetContainerEditor.FullyUpdateLocal"))
-tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.Build", "Firebase.asset"))
-tasks.append(lambda : unity_tools.execute_unity("GPCommon.QuickBuild.ExportLastBuildIpa"))
-tasks.append(lambda : unity_tools.execute_unity("Editor.OnekeyBuild.UploadLastBuild"))
+tasks.append(unity_tools.execute_update_asset_config)
+
+tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.OnekeyGenFinal"))
+
+tasks.append(unity_tools.execute_update_assetbundle)
+# tasks.append(unity_tools.execute_fully_update_assetbundle)
+tasks.append(lambda : unity_tools.execute_quick_build("Firebase.asset"))
+
+tasks.append(unity_tools.execute_export_lastbuild_ipa)
+tasks.append(unity_tools.execute_upload_lastbuild)
 
 unity_tools.do_tasks(tasks)

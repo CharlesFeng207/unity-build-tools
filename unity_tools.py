@@ -54,13 +54,53 @@ def print_and_run(cmd):
     return os.system(cmd)
 
 
+def execute_upload_version():
+    return execute_unity("GPCommon.VersionFlowEditor.UploadVersion")
+
+
+def execute_upload_pending_version():
+    return execute_unity("GPCommon.VersionFlowEditor.UploadPendingVersion")
+
+
+def execute_upload_patch():
+    return execute_unity("GPCommon.VersionFlowEditor.UploadPatch")
+
+
+def execute_archieve_assetbundle():
+    return execute_unity("GPCommon.VersionFlowEditor.ArchiveBundles")
+
+
+def execute_export_lastbuild_ipa():
+    return execute_unity("GPCommon.QuickBuild.ExportLastBuildIpa")
+
+
+def execute_upload_lastbuild():
+    return execute_unity("Editor.OnekeyBuild.UploadLastBuild")
+
+
+def execute_apply_build_config(configName):
+    return execute_unity("GPCommon.QuickBuild.Apply", configName)
+
+
+def execute_update_asset_config():
+    return execute_unity("GPCommon.AssetItemMaker.UpdateAll")
+
+
+def execute_update_assetbundle():
+    return execute_unity("GPCommon.AssetContainerEditor.UpdateLocal")
+
+
+def execute_fully_update_assetbundle():
+    return execute_unity("GPCommon.AssetContainerEditor.FullyUpdateLocal")
+
+
 def execute_quick_build(configName):
     svn_version = get_svn_version()
     return execute_unity("GPCommon.QuickBuild.Build", f"{configName} {svn_version}")
 
 
 def execute_unity(executeMethod, args=""):
-    cmd = r"{0} -batchmode -nographics -projectPath {1} -executeMethod {2} {3} -quit -logFile run_unity.log".format(
+    cmd = r"{0} -batchmode -nographics -projectPath {1} -executeMethod {2} {3} -quit -logFile executeMethod.log >> execute_unity.log".format(
         config["unityPath"], config["projectPath"], executeMethod, args)
     return print_and_run(cmd)
 
