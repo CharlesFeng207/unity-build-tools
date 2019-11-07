@@ -5,13 +5,13 @@ import unity_tools
 unity_tools.init("android.json")
 
 unity_tools.set_build_number(50)
-unity_tools.set_version_code("5.0.0.0")
+unity_tools.set_version_code("5.0.15.0")
 
 tasks = []
 
 # tasks.append(unity_tools.svn_update)
 
-# tasks.append(lambda : unity_tools.execute_apply_build_config("Firebase.asset"))
+tasks.append(lambda : unity_tools.execute_apply_build_config("FirebaseTest.asset"))
 
 tasks.append(lambda : unity_tools.execute_unity("wxb.GenHotfixDegleng.DeleteCode"))
 tasks.append(unity_tools.execute_update_asset_config)
@@ -23,7 +23,7 @@ tasks.append(unity_tools.execute_update_assetbundle)
 
 # tasks.append(unity_tools.commitAssetBundles)
 
-tasks.append(lambda : unity_tools.execute_quick_build("Firebase.asset"))
+tasks.append(lambda : unity_tools.execute_quick_build("FirebaseTest.asset"))
 
 tasks.append(unity_tools.execute_upload_lastbuild)
 

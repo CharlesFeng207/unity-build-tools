@@ -159,7 +159,7 @@ def execute_unity(executeMethod, args=""):
 
 def svn_update():
     cmd = r"svn update {0} --username {1} --password {2} --accept tc".format(
-        config["projectPath"], config["svn_username"], config["svn_password"])
+        config["svnUpdatePath"], config["svn_username"], config["svn_password"])
 
     r = print_and_run(cmd)
     if r != 0:
@@ -167,10 +167,23 @@ def svn_update():
     return r
 
 
+def build_hot_dll():
+    os.chdir(join(config["projectPath"], "Hot"))
+    return print_and_run("build.bat")
+
+
 def commitAssetBundles():
-    print_and_run(r"svn add {0}\*".format(config["assetBundlesPath"]))
-    return print_and_run(r"svn commit -m \"AssetBundles\" {0} --username {1} --password {2}".
-                         format(config["assetBundlesPath"], config["svn_username"], config["svn_password"]))
+    return svn_commmit("AssetBundles", config["assetBundlesPath"], True)
+
+
+def svn_commmit(path, comment, folder):
+    if folder:
+        print_and_run(r"svn add {0}\*".format(path))
+    else:
+        print_and_run(r"svn add {0}".format(path))
+
+    return print_and_run(r"svn commit -m \"{0}\" {1} --username {2} --password {3}".
+                         format(comment, path, config["svn_username"], config["svn_password"]))
 
 
 if __name__ == "__main__":
