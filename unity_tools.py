@@ -158,8 +158,12 @@ def execute_unity(executeMethod, args=""):
 
 
 def svn_update():
+    return svn_update_by_path(config["svnUpdatePath"])
+   
+
+def svn_update_by_path(p):
     cmd = r"svn update {0} --username {1} --password {2} --accept tc".format(
-        config["svnUpdatePath"], config["svn_username"], config["svn_password"])
+        p, config["svn_username"], config["svn_password"])
 
     r = print_and_run(cmd)
     if r != 0:
@@ -173,7 +177,7 @@ def build_hot_dll():
 
 
 def commitAssetBundles():
-    return svn_commmit("AssetBundles", config["assetBundlesPath"], True)
+    return svn_commmit(config["assetBundlesPath"], "AssetBundles", True)
 
 
 def svn_commmit(path, comment, folder):
