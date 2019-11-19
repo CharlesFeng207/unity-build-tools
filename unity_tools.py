@@ -58,9 +58,9 @@ def make_ipa_qrcode():
         img.save(f)
 
     commit_qrcode_project(build_name)
-    execute_upload(qrcodeFilePath)
+    return execute_upload(qrcodeFilePath)
 
-    pass
+    
 
 
 def commit_qrcode_project(message):
