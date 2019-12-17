@@ -60,8 +60,6 @@ def make_ipa_qrcode():
     commit_qrcode_project(build_name)
     return execute_upload(qrcodeFilePath)
 
-    
-
 
 def commit_qrcode_project(message):
     os.chdir(config["qrcodePath"])
@@ -86,15 +84,21 @@ def get_svn_version():
 
 
 def set_version_code(versionCode):
-    with open(join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt"), 'w') as f:
-        f.write(versionCode)
-    pass
+    try:
+        with open(join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt"), 'w') as f:
+            f.write(versionCode)
+    except:
+        return False
+    return True
 
 
 def set_build_number(buildNumber):
-    with open(join(config["projectPath"], "TempQuickBuild", "BuildNumber.txt"), 'w') as f:
-        f.write(str(buildNumber))
-    pass
+    try:
+        with open(join(config["projectPath"], "TempQuickBuild", "BuildNumber.txt"), 'w') as f:
+            f.write(str(buildNumber))
+    except:
+        return False
+    return True
 
 
 def print_and_run(cmd):
@@ -159,7 +163,7 @@ def execute_unity(executeMethod, args=""):
 
 def svn_update():
     return svn_update_by_path(config["svnUpdatePath"])
-   
+
 
 def svn_update_by_path(p):
     cmd = r"svn update {0} --username {1} --password {2} --accept tc".format(
@@ -212,7 +216,7 @@ def svn_commmit(path, comment, folder):
 
 if __name__ == "__main__":
     init("test.json")
-    # wait_svn_version_code("6.0.0.0")
+    wait_svn_version_code("6.0.0.0")
     # svn_commmit_version()
     # get_svn_version()
     # print(get_current_build_name())
