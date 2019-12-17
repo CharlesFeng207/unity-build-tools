@@ -1,11 +1,11 @@
 {
-    "svnUpdatePath":"C:\\Users\\47613\\Documents\\Repositories\\g03_ssd\\Code",
+    "svnUpdatePath":"E:\\repos\\g03_ssd\\Code",
     "unityPath":"Unity",
-    "projectPath":"C:\\Users\\47613\\Documents\\Repositories\\g03_ssd\\Code\\g03_client",
-    "assetBundlesPath":"C:\\Users\\47613\\Documents\\Repositories\\g03_ssd\\Code\\g03_client\\Test",
+    "projectPath":"E:\\repos\\g03_ssd\\Code\\g03_client",
+    "assetBundlesPath":"E\\repos\\g03_ssd\\Code\\g03_client\\Test",
     "svn_username":"androidbuilder",
     "svn_password":"123456",
-    "qrcodePath":"C:\\Users\\47613\\Documents\\Repositories\\CharlesFeng207.github.io",
+    "qrcodePath":"E:\\repos\\CharlesFeng207.github.io",
     "uploadUrl":"http://192.168.0.230:2015/g03",
     "qrcodeUrl":"https://charlesfeng207.github.io"
 }

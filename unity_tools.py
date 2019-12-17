@@ -7,7 +7,7 @@ import subprocess
 from os.path import join
 import qrcode
 from PIL import Image
-
+from time import sleep
 
 config = {}
 
@@ -180,6 +180,26 @@ def commitAssetBundles():
     return svn_commmit(config["assetBundlesPath"], "AssetBundles", True)
 
 
+def svn_commmit_version():
+    return svn_commmit(join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt"), "VersionCode.txt", False)
+
+
+def wait_svn_version_code(version):
+    p = join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt")
+
+    while True:
+        svn_update_by_path(p)
+        with open(p, 'r') as f:
+            c = f.read()
+            print(f"expect:{version} actual:{c}")
+            if c == version:
+                print("go!")
+                break
+        print("wait...")
+        sleep(10)
+    pass
+
+
 def svn_commmit(path, comment, folder):
     if folder:
         print_and_run(r"svn add {0}\*".format(path))
@@ -191,10 +211,12 @@ def svn_commmit(path, comment, folder):
 
 
 if __name__ == "__main__":
-    init("android.json")
-    get_svn_version()
-    print(get_current_build_name())
-    make_ipa_qrcode()
+    init("test.json")
+    # wait_svn_version_code("6.0.0.0")
+    # svn_commmit_version()
+    # get_svn_version()
+    # print(get_current_build_name())
+    # make_ipa_qrcode()
 
     # set_version_code("2.0.0.0")
     # set_build_number(26)
