@@ -88,8 +88,8 @@ def set_version_code(versionCode):
         with open(join(config["projectPath"], "TempQuickBuild",  "VersionCode.txt"), 'w') as f:
             f.write(versionCode)
     except:
-        return False
-    return True
+        return -1
+    return 0
 
 
 def set_build_number(buildNumber):
@@ -97,8 +97,8 @@ def set_build_number(buildNumber):
         with open(join(config["projectPath"], "TempQuickBuild", "BuildNumber.txt"), 'w') as f:
             f.write(str(buildNumber))
     except:
-        return False
-    return True
+        return -1
+    return 0
 
 
 def print_and_run(cmd):
