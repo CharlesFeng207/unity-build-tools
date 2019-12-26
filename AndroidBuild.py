@@ -6,12 +6,13 @@ from os.path import join
 
 unity_tools.init("android.json")
 
-unity_tools.set_build_number(51)
-unity_tools.set_version_code("5.1.12.26")
 
 tasks = []
 
 tasks.append(unity_tools.svn_update)
+
+tasks.append(lambda : unity_tools.set_build_number(55))
+tasks.append(lambda : unity_tools.set_version_code("5.12.0.2"))
 
 # language bytes
 # tasks.append(lambda : unity_tools.execute_unity("Editor.LanguageEditor.DownloadLanguageBytes"))

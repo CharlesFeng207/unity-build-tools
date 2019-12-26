@@ -149,6 +149,8 @@ def execute_update_assetbundle():
 def execute_fully_update_assetbundle():
     return execute_unity("GPCommon.AssetContainerEditor.FullyUpdateLocal")
 
+def push_current_version_patch():
+    return execute_unity("GPCommon.AliCdnEditor.PushCurrentVersionPatch")
 
 def execute_quick_build(configName):
     svn_version = get_svn_version()
