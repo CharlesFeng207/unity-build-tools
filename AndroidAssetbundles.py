@@ -3,7 +3,7 @@ import unity_tools
 from os.path import join    
 
 
-unity_tools.init("android.json")
+unity_tools.init("android_fc_win.json")
 # unity_tools.init("ios.json")
 
 

@@ -3,7 +3,7 @@ import unity_tools
 from os.path import join    
 
 
-unity_tools.init("ios2.json")
+unity_tools.init("ios_fc_win.json")
 # unity_tools.init("ios.json")
 
 unity_tools.wait_svn_version_code("5.8.0.1")
