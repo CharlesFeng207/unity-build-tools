@@ -13,7 +13,7 @@ config = {}
 
 
 def init(configName):
-    with open(os.path.join(sys.path[0], configName), 'r') as f:
+    with open(os.path.join(sys.path[0], "config", configName), 'r') as f:
         global config
         config = json.load(f)
         print(config)

@@ -1,9 +1,9 @@
 {
+    "unityPath":"Unity",
     "svnUpdatePath":"C:\\Users\\Charles\\repos\\g03\\Branch2",
-    "unityPath":"C:\\Program Files\\Unity\\Editor\\Unity.exe",
     "projectPath":"C:\\Users\\Charles\\repos\\g03\\Branch2\\g03_client",
     "assetBundlesPath":"",
-    "svn_username":"iosbuilder",
+    "svn_username":"fengchao",
     "svn_password":"123456",
     "qrcodePath":"/Users/charles/Documents/CharlesFeng207.github.io",
     "uploadUrl":"http://192.168.0.230:2015/g03",
