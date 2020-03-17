@@ -1,17 +1,16 @@
 # coding:utf-8
+
 import unity_tools
 from os.path import join    
 
-
 unity_tools.init("android_fc_win.json")
-# unity_tools.init("ios.json")
-
 
 tasks = []
 
 tasks.append(unity_tools.svn_update)
 
-tasks.append(lambda : unity_tools.set_version_code("5.28.3.3"))
+tasks.append(lambda : unity_tools.set_build_number(62))
+tasks.append(lambda : unity_tools.set_version_code("6.0.0.1"))
 
 # language bytes
 # tasks.append(lambda : unity_tools.execute_unity("Editor.LanguageEditor.DownloadLanguageBytes"))
@@ -20,11 +19,11 @@ tasks.append(lambda : unity_tools.set_version_code("5.28.3.3"))
 # tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["serverConfigPath"], "language.bytes"), "languagebytessForServer",False))
 
 # config bytes
-# tasks.append(lambda : unity_tools.execute_unity("GPDataconvert.GPDataconvertEditor.UpdateInToolsBatchmode"))
-# tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Assets", "StaticAssets", "ConfigBytes"), "ConfigBytes", True))
-# tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Assets", "StaticAssets", "ConfigJsons"), "ConfigJsons", True))
-# tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Hot", "src", "HotConfigBean_Auto"), "HotConfigBean_Auto", True))
-# tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Hot", "src", "HotMes_Auto"), "HotMes_Auto", True))
+tasks.append(lambda : unity_tools.execute_unity("GPDataconvert.GPDataconvertEditor.UpdateInToolsBatchmode"))
+tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Assets", "StaticAssets", "ConfigBytes"), "ConfigBytes", True))
+tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Assets", "StaticAssets", "ConfigJsons"), "ConfigJsons", True))
+tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Hot", "src", "HotConfigBean_Auto"), "HotConfigBean_Auto", True))
+tasks.append(lambda : unity_tools.svn_commmit(join(unity_tools.config["projectPath"], "Hot", "src", "HotMes_Auto"), "HotMes_Auto", True))
 
 
 # # hotfix dll
@@ -49,6 +48,6 @@ tasks.append(unity_tools.execute_upload_patch)
 tasks.append(unity_tools.execute_upload_pending_version)
 # tasks = []
 
-# tasks.append(unity_tools.execute_upload_version)
+tasks.append(unity_tools.execute_upload_version)
 # tasks = []
 unity_tools.do_tasks(tasks)
